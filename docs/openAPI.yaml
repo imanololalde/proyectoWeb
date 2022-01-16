@@ -1,5 +1,5 @@
 openapi: 3.0.0
 info:
   version: 1.0.0
-  title: SenMap
-  description: A sample API to illustrate OpenAPI concepts
+  title: API Futbol
+  description: API que da servicio a AppFutbol

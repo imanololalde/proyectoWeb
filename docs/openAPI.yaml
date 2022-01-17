@@ -3,3 +3,103 @@ info:
   version: 1.0.0
   title: API Futbol
   description: API que da servicio a AppFutbol
+
+paths:
+  /users:
+    get:
+      description: Returns a list of all the users in the app
+      tags:
+        - Users 
+      responses:
+        '200':
+          description: Successful response
+    post:
+      description: Create a new user
+      tags:
+        - User 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object 
+              required:
+                - firstName
+                - lastName
+                - password
+                - age
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                password:
+                  type: string
+                age:
+                  type: integer
+      responses:
+        "200":
+          description: User created
+  /users/{id}:
+    get:
+      description: Returns a specific user
+      tags:
+        - User 
+      responses:
+        '200':
+          description: Successful response
+      parameters:
+              - in: path
+                name: id
+                schema:
+                  type: string
+                required: true
+                description: String ID of the user
+    delete:
+      description: Deletes a single user based on the ID supplied
+      tags:
+        - User 
+      responses:
+        "200":
+          description: Successful response
+      parameters:
+              - in: path
+                name: id
+                schema:
+                  type: string 
+                required: true
+                description: String ID of the user
+    put:
+      description: Update a user
+      tags:
+        - User 
+      parameters:
+            - name: id
+              in: path
+              description: String ID of the user 
+              required: true
+              schema:
+                type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object 
+              required:
+                - firstName
+                - lastName
+                - password
+                - age
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                password:
+                  type: string
+                age:
+                  type: integer
+      responses:
+        "200":
+          description: User updated 

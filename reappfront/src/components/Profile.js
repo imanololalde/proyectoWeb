@@ -10,7 +10,7 @@ export const Profile = () => {
 
     return (
         isAuthenticated && (
-            <div>
+            <div  style={{ padding :'10px 20px', textAlign:'center'}} >
                 <img src={user.picture} alt={user.name} />
                 <h2>{user.name}</h2>
                 <p>Email: {user.email}</p>

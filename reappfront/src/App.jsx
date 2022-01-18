@@ -25,11 +25,11 @@ export function App() {
     const handleGameAdd = () =>{
         const location = gamesLocationRef.current.value;
         const dateGame = gamesDateGameRef.current.value;
-        const players = 0;
+        const play = 0;
         if (location == '') return;
 
         setGames((prevGames) =>{
-            return [ ...prevGames, {id:uuidv4(), location, dateGame, players:players+1, completed:false}]
+            return [ ...prevGames, {id:uuidv4(), location, dateGame, players:play+1, completed:false}]
         });
 
         gamesLocationRef.current.value = null;
@@ -40,21 +40,42 @@ export function App() {
         setGames(newGames); 
     }
 
+    const handleMorePlayers = (id) => { 
+        const newGames = [...games];
+        const game = newGames.find((game) => game.id == id);
+        game.players = game.players+1;
+        setGames(newGames);
+    };
+
+    const handleLessPlayers = (id) => { 
+        const newGames = [...games];
+        const game = newGames.find((game) => game.id == id);
+        game.players = game.players-1;
+        setGames(newGames);
+    };
+
     return (
-    <React.Fragment>
+    <React.Fragment >
+        <body >
+        <h1 style={{ padding:'10px 20px', textAlign:'center', color: 'black'}}>App Futbol</h1>
+    <div style={{ backgroundColor : 'lightblue', width: '300px', minHeight: '200px', boxSizing : 'border-box', margin :'30px auto'}}>
+        {isAuthenticated ? <>
         <GamesList games={games} toggleGame={toggleGame}/>
         <input ref={gamesLocationRef} type="text" placeholder="Location"></input>
         <input ref={gamesDateGameRef} type="date"></input>
         <button onClick={handleGameAdd}>➕</button>
         <button onClick={handleClearAll}>🗑️</button>
-        <div>Hay {games.filter((game) => !game.completed).length} partidos disponibles</div>
-        {isAuthenticated ? <>
+        <div>Hay {games.length} partidos disponibles</div>
+        <button onClick={handleMorePlayers}>Mas 1 jugador</button>
+        <button onClick={handleLessPlayers}>Menos 1 jugador</button>
+        <br/>
             <LogoutButton/>
             <Profile/>
             </>
             :<LoginButton/>
         }
-        
+    </div>
+    </body>
     </React.Fragment>
     );
 }

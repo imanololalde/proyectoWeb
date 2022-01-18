@@ -12,7 +12,7 @@ paths:
         - Users 
       responses:
         '200':
-          description: Successful response
+          description: Users found
     post:
       description: Create a new user
       tags:
@@ -47,7 +47,7 @@ paths:
         - User 
       responses:
         '200':
-          description: Successful response
+          description: User found
       parameters:
               - in: path
                 name: id
@@ -61,7 +61,7 @@ paths:
         - User 
       responses:
         "200":
-          description: Successful response
+          description: User deleted
       parameters:
               - in: path
                 name: id

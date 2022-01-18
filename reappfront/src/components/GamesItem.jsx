@@ -11,7 +11,9 @@ export function GamesItem({game, toggleGame}) {
     <li> 
         <input type="checkbox" checked={completed} onChange={handleGameClick}/>
         {location}
+        <br></br>
         {dateGame}
+        <br></br>
         {players}
     </li>
     );
